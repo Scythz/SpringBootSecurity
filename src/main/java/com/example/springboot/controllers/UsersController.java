@@ -62,7 +62,7 @@ public class UsersController {
         return "redirect:/";
     }
 
-    @PostMapping("delete/{id}")
+    @DeleteMapping("delete/{id}")
     public String delete(@PathVariable("id") int id) {
         us.delete(id);
         return "redirect:/";
