@@ -18,12 +18,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> index() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    public User show(int id) {
+    public User getUserById(Long id) {
         User user = null;
         Optional<User> optional = userRepository.findById(id);
         if (optional.isPresent()) {
@@ -40,14 +40,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(int id, User updatedUser) {
-        updatedUser.setId(show(id).getId());
+    public void update(Long id, User updatedUser) {
+        updatedUser.setId(getUserById(id).getId());
         userRepository.save(updatedUser);
 
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         userRepository.deleteById(id);
     }
 }

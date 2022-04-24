@@ -10,12 +10,12 @@ import javax.validation.constraints.Size;
 
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column
     @NotEmpty(message = "Имя не должно быть пустым")
@@ -31,7 +31,7 @@ public class User {
     @Email(message = "email введен неправильно")
     private String email;
 
-    public User(int id, String name, int age, String email) {
+    public User(Long id, String name, int age, String email) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -50,11 +50,11 @@ public class User {
         this.age = age;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -23,13 +23,13 @@ public class UsersController {
 
     @GetMapping()
     public String index(Model model) {
-        model.addAttribute("users", us.index());
+        model.addAttribute("users", us.getAllUsers());
         return "index";
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user", us.show(id));
+    public String show(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("user", us.getUserById(id));
         return "show";
     }
 
@@ -48,13 +48,13 @@ public class UsersController {
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("user", us.show(id));
+    public String edit(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("user", us.getUserById(id));
         return "edit";
     }
 
     @PostMapping("/{id}")
-    public String update(@ModelAttribute("user")  @Valid User user, BindingResult bindingResult, @PathVariable("id") int id) {
+    public String update(@ModelAttribute("user")  @Valid User user, BindingResult bindingResult, @PathVariable("id") Long id) {
         if (bindingResult.hasErrors()) {
             return "edit";
         }
@@ -63,7 +63,7 @@ public class UsersController {
     }
 
     @DeleteMapping("delete/{id}")
-    public String delete(@PathVariable("id") int id) {
+    public String delete(@PathVariable("id") Long id) {
         us.delete(id);
         return "redirect:/";
     }

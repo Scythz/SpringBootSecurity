@@ -6,13 +6,13 @@ import com.example.springboot.models.User;
 import java.util.List;
 
 public interface UserService {
-    List<User> index();
+    List<User> getAllUsers();
 
-    User show(int id);
+    User getUserById(Long id);
 
     void save(User user);
 
-    void update(int id, User updatedUser);
+    void update(Long id, User updatedUser);
 
-    void delete(int id);
+    void delete(Long id);
 }
